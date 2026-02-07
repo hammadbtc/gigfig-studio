@@ -1,7 +1,7 @@
 import Head from 'next/head';
-import { motion } from 'framer-motion';
-import { ArrowRight, ArrowUpRight, ChevronLeft, ChevronRight } from 'lucide-react';
-import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ArrowRight, ArrowUpRight, ChevronLeft, ChevronRight, X } from 'lucide-react';
+import { useState, useEffect } from 'react';
 
 const projects = [
   {
@@ -78,6 +78,8 @@ export default function Home() {
 
   const [hoveredProject, setHoveredProject] = useState(null);
   const [cravioIndex, setCravioIndex] = useState(0);
+  const [lightboxOpen, setLightboxOpen] = useState(false);
+  const [lightboxImage, setLightboxImage] = useState('');
 
   const scrollToWorks = () => {
     document.getElementById('works').scrollIntoView({ behavior: 'smooth' });
@@ -90,6 +92,26 @@ export default function Home() {
   const prevCravio = () => {
     setCravioIndex((prev) => (prev - 1 + cravioImages.length) % cravioImages.length);
   };
+
+  const openLightbox = (image) => {
+    setLightboxImage(image);
+    setLightboxOpen(true);
+    document.body.style.overflow = 'hidden';
+  };
+
+  const closeLightbox = () => {
+    setLightboxOpen(false);
+    setLightboxImage('');
+    document.body.style.overflow = 'unset';
+  };
+
+  useEffect(() => {
+    const handleEscape = (e) => {
+      if (e.key === 'Escape') closeLightbox();
+    };
+    window.addEventListener('keydown', handleEscape);
+    return () => window.removeEventListener('keydown', handleEscape);
+  }, []);
 
   return (
     <div style={styles.container}>
@@ -223,7 +245,10 @@ export default function Home() {
                 onMouseEnter={() => setHoveredProject(project.id)}
                 onMouseLeave={() => setHoveredProject(null)}
               >
-                <div style={styles.projectImageContainer}>
+                <div 
+                  style={styles.projectImageContainer}
+                  onClick={() => openLightbox(project.image)}
+                >
                   <img
                     src={project.image}
                     alt={project.name}
@@ -259,6 +284,7 @@ export default function Home() {
                   src={cravioImages[cravioIndex]}
                   alt="Cravio"
                   style={styles.carouselImage}
+                  onClick={() => openLightbox(cravioImages[cravioIndex])}
                 />
                 <button onClick={prevCravio} style={{...styles.carouselButton, ...styles.carouselButtonLeft}}>
                   <ChevronLeft size={20} color="white" />
@@ -301,7 +327,10 @@ export default function Home() {
                 onMouseEnter={() => setHoveredProject(project.id)}
                 onMouseLeave={() => setHoveredProject(null)}
               >
-                <div style={styles.projectImageContainer}>
+                <div 
+                  style={styles.projectImageContainer}
+                  onClick={() => openLightbox(project.image)}
+                >
                   <img
                     src={project.image}
                     alt={project.name}
@@ -338,6 +367,37 @@ export default function Home() {
           ))}
         </div>
       </div>
+
+      {/* Lightbox */}
+      <AnimatePresence>
+        {lightboxOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            style={styles.lightbox}
+            onClick={closeLightbox}
+          >
+            <button
+              style={styles.lightboxClose}
+              onClick={closeLightbox}
+            >
+              <X size={32} color="white" />
+            </button>
+            <motion.img
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              src={lightboxImage}
+              alt="Full size"
+              style={styles.lightboxImage}
+              onClick={(e) => e.stopPropagation()}
+            />
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
@@ -600,6 +660,7 @@ const styles = {
     width: '100%',
     height: '100%',
     objectFit: 'cover',
+    cursor: 'pointer',
   },
   carouselButton: {
     position: 'absolute',
@@ -673,5 +734,41 @@ const styles = {
     height: '6px',
     borderRadius: '50%',
     backgroundColor: '#8B5CF6',
+  },
+  lightbox: {
+    position: 'fixed',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    backgroundColor: 'rgba(0, 0, 0, 0.95)',
+    zIndex: 1000,
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: '40px',
+  },
+  lightboxClose: {
+    position: 'absolute',
+    top: '24px',
+    left: '50%',
+    transform: 'translateX(-50%)',
+    width: '48px',
+    height: '48px',
+    borderRadius: '50%',
+    backgroundColor: 'rgba(255, 255, 255, 0.1)',
+    border: '1px solid rgba(255, 255, 255, 0.2)',
+    cursor: 'pointer',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    transition: 'background-color 0.2s',
+    zIndex: 1001,
+  },
+  lightboxImage: {
+    maxWidth: '90%',
+    maxHeight: '85vh',
+    objectFit: 'contain',
+    borderRadius: '12px',
   },
 };
