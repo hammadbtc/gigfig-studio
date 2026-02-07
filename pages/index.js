@@ -80,6 +80,7 @@ export default function Home() {
   const [cravioIndex, setCravioIndex] = useState(0);
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [lightboxImage, setLightboxImage] = useState('');
+  const [isCravioLightbox, setIsCravioLightbox] = useState(false);
 
   const scrollToWorks = () => {
     document.getElementById('works').scrollIntoView({ behavior: 'smooth' });
@@ -93,8 +94,9 @@ export default function Home() {
     setCravioIndex((prev) => (prev - 1 + cravioImages.length) % cravioImages.length);
   };
 
-  const openLightbox = (image) => {
+  const openLightbox = (image, isCravio = false) => {
     setLightboxImage(image);
+    setIsCravioLightbox(isCravio);
     setLightboxOpen(true);
     document.body.style.overflow = 'hidden';
   };
@@ -102,7 +104,20 @@ export default function Home() {
   const closeLightbox = () => {
     setLightboxOpen(false);
     setLightboxImage('');
+    setIsCravioLightbox(false);
     document.body.style.overflow = 'unset';
+  };
+
+  const nextCravioLightbox = () => {
+    const nextIndex = (cravioIndex + 1) % cravioImages.length;
+    setCravioIndex(nextIndex);
+    setLightboxImage(cravioImages[nextIndex]);
+  };
+
+  const prevCravioLightbox = () => {
+    const prevIndex = (cravioIndex - 1 + cravioImages.length) % cravioImages.length;
+    setCravioIndex(prevIndex);
+    setLightboxImage(cravioImages[prevIndex]);
   };
 
   useEffect(() => {
@@ -284,7 +299,7 @@ export default function Home() {
                   src={cravioImages[cravioIndex]}
                   alt="Cravio"
                   style={styles.carouselImage}
-                  onClick={() => openLightbox(cravioImages[cravioIndex])}
+                  onClick={() => openLightbox(cravioImages[cravioIndex], true)}
                 />
                 <button onClick={prevCravio} style={{...styles.carouselButton, ...styles.carouselButtonLeft}}>
                   <ChevronLeft size={20} color="white" />
@@ -385,6 +400,22 @@ export default function Home() {
             >
               <X size={32} color="white" />
             </button>
+            {isCravioLightbox && (
+              <>
+                <button
+                  style={{...styles.lightboxNavButton, ...styles.lightboxNavButtonLeft}}
+                  onClick={(e) => { e.stopPropagation(); prevCravioLightbox(); }}
+                >
+                  <ChevronLeft size={32} color="white" />
+                </button>
+                <button
+                  style={{...styles.lightboxNavButton, ...styles.lightboxNavButtonRight}}
+                  onClick={(e) => { e.stopPropagation(); nextCravioLightbox(); }}
+                >
+                  <ChevronRight size={32} color="white" />
+                </button>
+              </>
+            )}
             <motion.img
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
@@ -764,6 +795,28 @@ const styles = {
     justifyContent: 'center',
     transition: 'background-color 0.2s',
     zIndex: 1001,
+  },
+  lightboxNavButton: {
+    position: 'absolute',
+    top: '50%',
+    transform: 'translateY(-50%)',
+    width: '56px',
+    height: '56px',
+    borderRadius: '50%',
+    backgroundColor: 'rgba(255, 255, 255, 0.1)',
+    border: '1px solid rgba(255, 255, 255, 0.2)',
+    cursor: 'pointer',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    transition: 'background-color 0.2s',
+    zIndex: 1001,
+  },
+  lightboxNavButtonLeft: {
+    left: '24px',
+  },
+  lightboxNavButtonRight: {
+    right: '24px',
   },
   lightboxImage: {
     maxWidth: '90%',
