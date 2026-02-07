@@ -19,13 +19,6 @@ const projects = [
     category: 'Landing Page',
   },
   {
-    id: 3,
-    name: 'ScaleUp',
-    description: 'Digital product platform for marketing and creative teams.',
-    image: '/images/project-3.png',
-    category: 'SaaS',
-  },
-  {
     id: 4,
     name: 'Drift',
     description: 'Streetwear brand storefront with limited drops and bold visuals.',
@@ -59,6 +52,13 @@ const projects = [
     description: 'Curated travel journeys with vintage passport-inspired design.',
     image: '/images/project-8.png',
     category: 'Travel',
+  },
+  {
+    id: 3,
+    name: 'ScaleUp',
+    description: 'Digital product platform for marketing and creative teams.',
+    image: '/images/project-3.png',
+    category: 'SaaS',
   },
 ];
 
@@ -207,7 +207,8 @@ export default function Home() {
           </motion.div>
 
           <div style={styles.projectsGrid}>
-            {projects.map((project, index) => (
+            {/* First 2 projects: LaunchPad, VRX */}
+            {projects.slice(0, 2).map((project, index) => (
               <motion.div
                 key={project.id}
                 initial={{ opacity: 0, y: 30 }}
@@ -244,12 +245,12 @@ export default function Home() {
               </motion.div>
             ))}
 
-            {/* Cravio App - Carousel */}
+            {/* Cravio App - Carousel (position 3) */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.8 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
               style={styles.projectCard}
             >
               <div style={styles.carouselContainer}>
@@ -283,6 +284,44 @@ export default function Home() {
                 <p style={styles.projectDescription}>Food delivery app with 60+ screens, warm UI and seamless ordering experience.</p>
               </div>
             </motion.div>
+
+            {/* Remaining projects: Drift through ScaleUp */}
+            {projects.slice(2).map((project, index) => (
+              <motion.div
+                key={project.id}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: (index + 3) * 0.1 }}
+                style={{
+                  ...styles.projectCard,
+                  ...(hoveredProject === project.id ? styles.projectCardHover : {}),
+                }}
+                onMouseEnter={() => setHoveredProject(project.id)}
+                onMouseLeave={() => setHoveredProject(null)}
+              >
+                <div style={styles.projectImageContainer}>
+                  <img
+                    src={project.image}
+                    alt={project.name}
+                    style={{
+                      ...styles.projectImage,
+                      ...(hoveredProject === project.id ? styles.projectImageHover : {}),
+                    }}
+                  />
+                  <div style={styles.projectOverlay}>
+                    <div style={styles.projectArrow}>
+                      <ArrowUpRight size={24} color="white" />
+                    </div>
+                  </div>
+                </div>
+                <div style={styles.projectInfo}>
+                  <span style={styles.projectCategory}>{project.category}</span>
+                  <h3 style={styles.projectName}>{project.name}</h3>
+                  <p style={styles.projectDescription}>{project.description}</p>
+                </div>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
