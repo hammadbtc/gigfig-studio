@@ -12,11 +12,11 @@ const projects = [
     category: 'Web App',
   },
   {
-    id: 2,
-    name: 'VRX',
-    description: 'Immersive VR experience platform with 600K+ active users worldwide.',
-    image: '/images/project-2.png',
-    category: 'Landing Page',
+    id: 6,
+    name: 'Glitch',
+    description: 'Retro arcade and bar experience with neon vibes and craft drinks.',
+    image: '/images/project-6.png',
+    category: 'Experience',
   },
   {
     id: 4,
@@ -33,11 +33,11 @@ const projects = [
     category: 'E-commerce',
   },
   {
-    id: 6,
-    name: 'Glitch',
-    description: 'Retro arcade and bar experience with neon vibes and craft drinks.',
-    image: '/images/project-6.png',
-    category: 'Experience',
+    id: 3,
+    name: 'ScaleUp',
+    description: 'Digital product platform for marketing and creative teams.',
+    image: '/images/project-3.png',
+    category: 'SaaS',
   },
   {
     id: 7,
@@ -47,18 +47,18 @@ const projects = [
     category: 'Service',
   },
   {
+    id: 2,
+    name: 'VRX',
+    description: 'Immersive VR experience platform with 600K+ active users worldwide.',
+    image: '/images/project-2.png',
+    category: 'Landing Page',
+  },
+  {
     id: 8,
     name: 'Passport',
     description: 'Curated travel journeys with vintage passport-inspired design.',
     image: '/images/project-8.png',
     category: 'Travel',
-  },
-  {
-    id: 3,
-    name: 'ScaleUp',
-    description: 'Digital product platform for marketing and creative teams.',
-    image: '/images/project-3.png',
-    category: 'SaaS',
   },
 ];
 
