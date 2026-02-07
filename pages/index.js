@@ -1,6 +1,31 @@
 import Head from 'next/head';
 import { motion } from 'framer-motion';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, ArrowUpRight } from 'lucide-react';
+import { useState } from 'react';
+
+const projects = [
+  {
+    id: 1,
+    name: 'LaunchPad',
+    description: 'All-in-one SaaS dashboard for startup analytics and growth tracking.',
+    image: '/images/project-1.png',
+    category: 'Web App',
+  },
+  {
+    id: 2,
+    name: 'VRX',
+    description: 'Immersive VR experience platform with 600K+ active users worldwide.',
+    image: '/images/project-2.png',
+    category: 'Landing Page',
+  },
+  {
+    id: 3,
+    name: 'ScaleUp',
+    description: 'Digital product platform for marketing and creative teams.',
+    image: '/images/project-3.png',
+    category: 'SaaS',
+  },
+];
 
 export default function Home() {
   const tickerItems = [
@@ -9,6 +34,12 @@ export default function Home() {
     'Web Apps',
     'Brand Identity',
   ];
+
+  const [hoveredProject, setHoveredProject] = useState(null);
+
+  const scrollToWorks = () => {
+    document.getElementById('works').scrollIntoView({ behavior: 'smooth' });
+  };
 
   return (
     <div style={styles.container}>
@@ -29,6 +60,9 @@ export default function Home() {
         }
         .ticker {
           animation: ticker 30s linear infinite;
+        }
+        html {
+          scroll-behavior: smooth;
         }
       `}</style>
 
@@ -62,7 +96,7 @@ export default function Home() {
         <div style={styles.logo}>GigFig</div>
         
         <div style={styles.navLinks}>
-          <a href="#work" style={styles.navLink}>WORK</a>
+          <a href="#works" style={styles.navLink}>WORK</a>
           <a href="#about" style={styles.navLink}>ABOUT</a>
           <a href="#contact" style={styles.navLink}>CONTACT</a>
         </div>
@@ -104,7 +138,7 @@ export default function Home() {
             transition={{ duration: 0.6, delay: 0.6 }}
             style={styles.ctas}
           >
-            <button style={styles.primaryButton}>
+            <button style={styles.primaryButton} onClick={scrollToWorks}>
               Our Works
               <ArrowRight size={18} style={{ marginLeft: '8px' }} />
             </button>
@@ -112,6 +146,60 @@ export default function Home() {
           </motion.div>
         </div>
       </main>
+
+      {/* Works Section */}
+      <section id="works" style={styles.worksSection}>
+        <div style={styles.worksContainer}>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <h2 style={styles.worksTitle}>Selected Works</h2>
+            <p style={styles.worksSubtitle}>A few projects we&apos;re proud of</p>
+          </motion.div>
+
+          <div style={styles.projectsGrid}>
+            {projects.map((project, index) => (
+              <motion.div
+                key={project.id}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                style={{
+                  ...styles.projectCard,
+                  ...(hoveredProject === project.id ? styles.projectCardHover : {}),
+                }}
+                onMouseEnter={() => setHoveredProject(project.id)}
+                onMouseLeave={() => setHoveredProject(null)}
+              >
+                <div style={styles.projectImageContainer}>
+                  <img
+                    src={project.image}
+                    alt={project.name}
+                    style={{
+                      ...styles.projectImage,
+                      ...(hoveredProject === project.id ? styles.projectImageHover : {}),
+                    }}
+                  />
+                  <div style={styles.projectOverlay}>
+                    <div style={styles.projectArrow}>
+                      <ArrowUpRight size={24} color="white" />
+                    </div>
+                  </div>
+                </div>
+                <div style={styles.projectInfo}>
+                  <span style={styles.projectCategory}>{project.category}</span>
+                  <h3 style={styles.projectName}>{project.name}</h3>
+                  <p style={styles.projectDescription}>{project.description}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* Ticker */}
       <div style={styles.tickerContainer}>
@@ -133,17 +221,22 @@ const styles = {
     minHeight: '100vh',
     backgroundColor: '#0A0A0A',
     color: 'white',
-    overflow: 'hidden',
+    overflowX: 'hidden',
     position: 'relative',
   },
   bgGradient: {
-    position: 'absolute',
-    inset: 0,
+    position: 'fixed',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
     background: 'radial-gradient(ellipse 80% 60% at 50% 40%, rgba(139, 92, 246, 0.25) 0%, rgba(99, 102, 241, 0.15) 30%, transparent 70%)',
+    pointerEvents: 'none',
   },
   shape: {
-    position: 'absolute',
+    position: 'fixed',
     opacity: 0.6,
+    pointerEvents: 'none',
   },
   leftShape: {
     left: '-5%',
@@ -178,12 +271,17 @@ const styles = {
     transform: 'perspective(1000px) rotateY(15deg) rotateX(-5deg)',
   },
   nav: {
-    position: 'relative',
-    zIndex: 10,
+    position: 'fixed',
+    top: 0,
+    left: 0,
+    right: 0,
+    zIndex: 100,
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'space-between',
     padding: '24px 64px',
+    backgroundColor: 'rgba(10, 10, 10, 0.8)',
+    backdropFilter: 'blur(10px)',
   },
   logo: {
     fontSize: '24px',
@@ -219,8 +317,8 @@ const styles = {
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
-    minHeight: 'calc(100vh - 200px)',
-    padding: '0 24px',
+    minHeight: '100vh',
+    padding: '120px 24px',
   },
   heroContent: {
     maxWidth: '896px',
@@ -258,6 +356,7 @@ const styles = {
     alignItems: 'center',
     border: 'none',
     cursor: 'pointer',
+    transition: 'transform 0.2s, box-shadow 0.2s',
   },
   secondaryButton: {
     backgroundColor: 'transparent',
@@ -266,19 +365,117 @@ const styles = {
     borderRadius: '9999px',
     fontSize: '16px',
     fontWeight: 500,
-    border: '1px solid rgba(255, 255, 255, 0.3)',
+    border: '1px solid rgba(255, 255, 100, 0.3)',
     cursor: 'pointer',
+    transition: 'background-color 0.2s, border-color 0.2s',
+  },
+  worksSection: {
+    position: 'relative',
+    zIndex: 10,
+    padding: '120px 24px',
+    backgroundColor: 'rgba(10, 10, 10, 0.5)',
+  },
+  worksContainer: {
+    maxWidth: '1200px',
+    margin: '0 auto',
+  },
+  worksTitle: {
+    fontSize: 'clamp(32px, 5vw, 48px)',
+    fontWeight: 'bold',
+    marginBottom: '16px',
+    textAlign: 'center',
+  },
+  worksSubtitle: {
+    color: '#9CA3AF',
+    fontSize: '18px',
+    textAlign: 'center',
+    marginBottom: '64px',
+  },
+  projectsGrid: {
+    display: 'grid',
+    gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))',
+    gap: '32px',
+  },
+  projectCard: {
+    backgroundColor: 'rgba(255, 255, 255, 0.03)',
+    borderRadius: '24px',
+    overflow: 'hidden',
+    border: '1px solid rgba(255, 255, 255, 0.1)',
+    cursor: 'pointer',
+    transition: 'transform 0.3s, border-color 0.3s',
+  },
+  projectCardHover: {
+    transform: 'translateY(-8px)',
+    borderColor: 'rgba(139, 92, 246, 0.5)',
+  },
+  projectImageContainer: {
+    position: 'relative',
+    overflow: 'hidden',
+    aspectRatio: '16/10',
+  },
+  projectImage: {
+    width: '100%',
+    height: '100%',
+    objectFit: 'cover',
+    transition: 'transform 0.5s',
+  },
+  projectImageHover: {
+    transform: 'scale(1.05)',
+  },
+  projectOverlay: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    backgroundColor: 'rgba(0, 0, 0, 0.3)',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    opacity: 0,
+    transition: 'opacity 0.3s',
+  },
+  projectArrow: {
+    width: '56px',
+    height: '56px',
+    borderRadius: '50%',
+    backgroundColor: 'rgba(139, 92, 246, 0.9)',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  projectInfo: {
+    padding: '24px',
+  },
+  projectCategory: {
+    fontSize: '12px',
+    color: '#8B5CF6',
+    textTransform: 'uppercase',
+    letterSpacing: '0.1em',
+    marginBottom: '8px',
+    display: 'block',
+  },
+  projectName: {
+    fontSize: '24px',
+    fontWeight: 'bold',
+    marginBottom: '8px',
+  },
+  projectDescription: {
+    color: '#9CA3AF',
+    fontSize: '14px',
+    lineHeight: 1.6,
   },
   tickerContainer: {
-    position: 'absolute',
+    position: 'fixed',
     bottom: 0,
     left: 0,
     right: 0,
     borderTop: '1px solid rgba(255, 255, 255, 0.1)',
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
-    backdropFilter: 'blur(4px)',
+    backgroundColor: 'rgba(10, 10, 10, 0.8)',
+    backdropFilter: 'blur(10px)',
     overflow: 'hidden',
     padding: '16px 0',
+    zIndex: 100,
   },
   ticker: {
     display: 'flex',
