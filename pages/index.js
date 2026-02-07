@@ -86,6 +86,10 @@ export default function Home() {
     document.getElementById('works').scrollIntoView({ behavior: 'smooth' });
   };
 
+  const scrollToContact = () => {
+    document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+  };
+
   const nextCravio = () => {
     setCravioIndex((prev) => (prev + 1) % cravioImages.length);
   };
@@ -188,7 +192,7 @@ export default function Home() {
           <a href="#contact" style={styles.navLink}>CONTACT</a>
         </div>
 
-        <button style={styles.navButton}>Start Project</button>
+        <button style={styles.navButton} onClick={scrollToContact}>Start Project</button>
       </motion.nav>
 
       {/* Hero Content */}
@@ -368,6 +372,81 @@ export default function Home() {
               </motion.div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Contact Section */}
+      <section id="contact" style={styles.contactSection}>
+        <div style={styles.contactContainer}>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            style={styles.contactHeader}
+          >
+            <h2 style={styles.contactTitle}>Let&apos;s Work Together</h2>
+            <p style={styles.contactSubtitle}>Have a project in mind? Send us a message and let&apos;s create something amazing.</p>
+          </motion.div>
+
+          <motion.form
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            style={styles.contactForm}
+            onSubmit={(e) => {
+              e.preventDefault();
+              alert('Thanks for reaching out! We\'ll get back to you soon.');
+            }}
+          >
+            <div style={styles.formRow}>
+              <div style={styles.formGroup}>
+                <label style={styles.formLabel}>Name</label>
+                <input
+                  type="text"
+                  placeholder="Your name"
+                  style={styles.formInput}
+                  required
+                />
+              </div>
+              <div style={styles.formGroup}>
+                <label style={styles.formLabel}>Email</label>
+                <input
+                  type="email"
+                  placeholder="your@email.com"
+                  style={styles.formInput}
+                  required
+                />
+              </div>
+            </div>
+
+            <div style={styles.formGroup}>
+              <label style={styles.formLabel}>Project Type</label>
+              <select style={styles.formSelect}>
+                <option value="">Select a project type</option>
+                <option value="website">Website Design</option>
+                <option value="app">Mobile App</option>
+                <option value="branding">Branding</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+
+            <div style={styles.formGroup}>
+              <label style={styles.formLabel}>Message</label>
+              <textarea
+                placeholder="Tell us about your project..."
+                style={styles.formTextarea}
+                rows={5}
+                required
+              ></textarea>
+            </div>
+
+            <button type="submit" style={styles.submitButton}>
+              Send Message
+              <ArrowRight size={18} style={{ marginLeft: '8px' }} />
+            </button>
+          </motion.form>
         </div>
       </section>
 
@@ -765,6 +844,103 @@ const styles = {
     height: '6px',
     borderRadius: '50%',
     backgroundColor: '#8B5CF6',
+  },
+  contactSection: {
+    position: 'relative',
+    zIndex: 10,
+    padding: '120px 24px',
+    backgroundColor: 'rgba(10, 10, 10, 0.8)',
+  },
+  contactContainer: {
+    maxWidth: '800px',
+    margin: '0 auto',
+  },
+  contactHeader: {
+    textAlign: 'center',
+    marginBottom: '48px',
+  },
+  contactTitle: {
+    fontSize: 'clamp(32px, 5vw, 48px)',
+    fontWeight: 'bold',
+    marginBottom: '16px',
+  },
+  contactSubtitle: {
+    color: '#9CA3AF',
+    fontSize: '18px',
+  },
+  contactForm: {
+    backgroundColor: 'rgba(255, 255, 255, 0.03)',
+    borderRadius: '24px',
+    padding: '48px',
+    border: '1px solid rgba(255, 255, 255, 0.1)',
+  },
+  formRow: {
+    display: 'grid',
+    gridTemplateColumns: '1fr 1fr',
+    gap: '24px',
+    marginBottom: '24px',
+  },
+  formGroup: {
+    marginBottom: '24px',
+  },
+  formLabel: {
+    display: 'block',
+    fontSize: '14px',
+    fontWeight: 500,
+    marginBottom: '8px',
+    color: '#D1D5DB',
+  },
+  formInput: {
+    width: '100%',
+    padding: '14px 18px',
+    borderRadius: '12px',
+    border: '1px solid rgba(255, 255, 255, 0.1)',
+    backgroundColor: 'rgba(255, 255, 255, 0.05)',
+    color: 'white',
+    fontSize: '16px',
+    fontFamily: 'inherit',
+    outline: 'none',
+    transition: 'border-color 0.2s',
+  },
+  formSelect: {
+    width: '100%',
+    padding: '14px 18px',
+    borderRadius: '12px',
+    border: '1px solid rgba(255, 255, 255, 0.1)',
+    backgroundColor: 'rgba(255, 255, 255, 0.05)',
+    color: 'white',
+    fontSize: '16px',
+    fontFamily: 'inherit',
+    outline: 'none',
+    cursor: 'pointer',
+  },
+  formTextarea: {
+    width: '100%',
+    padding: '14px 18px',
+    borderRadius: '12px',
+    border: '1px solid rgba(255, 255, 255, 0.1)',
+    backgroundColor: 'rgba(255, 255, 255, 0.05)',
+    color: 'white',
+    fontSize: '16px',
+    fontFamily: 'inherit',
+    outline: 'none',
+    resize: 'vertical',
+    minHeight: '120px',
+  },
+  submitButton: {
+    width: '100%',
+    backgroundColor: '#8B5CF6',
+    color: 'white',
+    padding: '16px 32px',
+    borderRadius: '12px',
+    fontSize: '16px',
+    fontWeight: 600,
+    border: 'none',
+    cursor: 'pointer',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    transition: 'background-color 0.2s, transform 0.2s',
   },
   lightbox: {
     position: 'fixed',
