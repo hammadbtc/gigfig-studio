@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import { motion } from 'framer-motion';
-import { ArrowRight, ArrowUpRight } from 'lucide-react';
+import { ArrowRight, ArrowUpRight, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useState } from 'react';
 
 const projects = [
@@ -62,6 +62,11 @@ const projects = [
   },
 ];
 
+const cravioImages = [
+  '/images/cravio-1.png',
+  '/images/cravio-2.png',
+];
+
 export default function Home() {
   const tickerItems = [
     'Figma Experts',
@@ -71,9 +76,18 @@ export default function Home() {
   ];
 
   const [hoveredProject, setHoveredProject] = useState(null);
+  const [cravioIndex, setCravioIndex] = useState(0);
 
   const scrollToWorks = () => {
     document.getElementById('works').scrollIntoView({ behavior: 'smooth' });
+  };
+
+  const nextCravio = () => {
+    setCravioIndex((prev) => (prev + 1) % cravioImages.length);
+  };
+
+  const prevCravio = () => {
+    setCravioIndex((prev) => (prev - 1 + cravioImages.length) % cravioImages.length);
   };
 
   return (
@@ -142,7 +156,6 @@ export default function Home() {
       {/* Hero Content */}
       <main style={styles.main}>
         <div style={styles.heroContent}>
-          {/* Headline */}
           <motion.h1 
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -153,7 +166,6 @@ export default function Home() {
             experiences that work.
           </motion.h1>
 
-          {/* Paragraph */}
           <motion.p 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -166,7 +178,6 @@ export default function Home() {
             our work below to see the magic in action, and let&apos;s connect to elevate yours.
           </motion.p>
 
-          {/* CTAs */}
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -232,6 +243,46 @@ export default function Home() {
                 </div>
               </motion.div>
             ))}
+
+            {/* Cravio App - Carousel */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.8 }}
+              style={styles.projectCard}
+            >
+              <div style={styles.carouselContainer}>
+                <img
+                  src={cravioImages[cravioIndex]}
+                  alt="Cravio"
+                  style={styles.carouselImage}
+                />
+                <button onClick={prevCravio} style={{...styles.carouselButton, ...styles.carouselButtonLeft}}>
+                  <ChevronLeft size={20} color="white" />
+                </button>
+                <button onClick={nextCravio} style={{...styles.carouselButton, ...styles.carouselButtonRight}}>
+                  <ChevronRight size={20} color="white" />
+                </button>
+                <div style={styles.carouselDots}>
+                  {cravioImages.map((_, idx) => (
+                    <button
+                      key={idx}
+                      onClick={() => setCravioIndex(idx)}
+                      style={{
+                        ...styles.carouselDot,
+                        ...(idx === cravioIndex ? styles.carouselDotActive : {}),
+                      }}
+                    />
+                  ))}
+                </div>
+              </div>
+              <div style={styles.projectInfo}>
+                <span style={styles.projectCategory}>Mobile App</span>
+                <h3 style={styles.projectName}>Cravio</h3>
+                <p style={styles.projectDescription}>Food delivery app with 60+ screens, warm UI and seamless ordering experience.</p>
+              </div>
+            </motion.div>
           </div>
         </div>
       </section>
@@ -499,6 +550,57 @@ const styles = {
     color: '#9CA3AF',
     fontSize: '14px',
     lineHeight: 1.6,
+  },
+  carouselContainer: {
+    position: 'relative',
+    aspectRatio: '16/10',
+    overflow: 'hidden',
+  },
+  carouselImage: {
+    width: '100%',
+    height: '100%',
+    objectFit: 'cover',
+  },
+  carouselButton: {
+    position: 'absolute',
+    top: '50%',
+    transform: 'translateY(-50%)',
+    width: '40px',
+    height: '40px',
+    borderRadius: '50%',
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    border: 'none',
+    cursor: 'pointer',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    transition: 'background-color 0.2s',
+  },
+  carouselButtonLeft: {
+    left: '12px',
+  },
+  carouselButtonRight: {
+    right: '12px',
+  },
+  carouselDots: {
+    position: 'absolute',
+    bottom: '12px',
+    left: '50%',
+    transform: 'translateX(-50%)',
+    display: 'flex',
+    gap: '8px',
+  },
+  carouselDot: {
+    width: '8px',
+    height: '8px',
+    borderRadius: '50%',
+    backgroundColor: 'rgba(255, 255, 255, 0.5)',
+    border: 'none',
+    cursor: 'pointer',
+    transition: 'background-color 0.2s',
+  },
+  carouselDotActive: {
+    backgroundColor: '#8B5CF6',
   },
   tickerContainer: {
     position: 'fixed',
