@@ -25,6 +25,41 @@ const projects = [
     image: '/images/project-3.png',
     category: 'SaaS',
   },
+  {
+    id: 4,
+    name: 'Drift',
+    description: 'Streetwear brand storefront with limited drops and bold visuals.',
+    image: '/images/project-4.png',
+    category: 'E-commerce',
+  },
+  {
+    id: 5,
+    name: 'Moss & Co.',
+    description: 'Rare plants e-commerce for modern spaces with organic aesthetics.',
+    image: '/images/project-5.png',
+    category: 'E-commerce',
+  },
+  {
+    id: 6,
+    name: 'Glitch',
+    description: 'Retro arcade and bar experience with neon vibes and craft drinks.',
+    image: '/images/project-6.png',
+    category: 'Experience',
+  },
+  {
+    id: 7,
+    name: 'Patch',
+    description: 'Sustainable fashion alterations with pickup and delivery service.',
+    image: '/images/project-7.png',
+    category: 'Service',
+  },
+  {
+    id: 8,
+    name: 'Passport',
+    description: 'Curated travel journeys with vintage passport-inspired design.',
+    image: '/images/project-8.png',
+    category: 'Travel',
+  },
 ];
 
 export default function Home() {
