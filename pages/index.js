@@ -65,6 +65,7 @@ const projects = [
 const cravioImages = [
   '/images/cravio-1.png',
   '/images/cravio-2.png',
+  '/images/cravio-3.png',
 ];
 
 export default function Home() {
