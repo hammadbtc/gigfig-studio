@@ -395,16 +395,15 @@ export default function Home() {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
             style={styles.contactForm}
-            onSubmit={(e) => {
-              e.preventDefault();
-              alert('Thanks for reaching out! We\'ll get back to you soon.');
-            }}
+            action="https://formspree.io/f/mbdajqog"
+            method="POST"
           >
             <div style={styles.formRow}>
               <div style={styles.formGroup}>
                 <label style={styles.formLabel}>Name</label>
                 <input
                   type="text"
+                  name="name"
                   placeholder="Your name"
                   style={styles.formInput}
                   required
@@ -414,6 +413,7 @@ export default function Home() {
                 <label style={styles.formLabel}>Email</label>
                 <input
                   type="email"
+                  name="email"
                   placeholder="your@email.com"
                   style={styles.formInput}
                   required
@@ -423,7 +423,7 @@ export default function Home() {
 
             <div style={styles.formGroup}>
               <label style={styles.formLabel}>Project Type</label>
-              <select style={styles.formSelect}>
+              <select name="project_type" style={styles.formSelect}>
                 <option value="">Select a project type</option>
                 <option value="website">Website Design</option>
                 <option value="app">Mobile App</option>
@@ -435,6 +435,7 @@ export default function Home() {
             <div style={styles.formGroup}>
               <label style={styles.formLabel}>Message</label>
               <textarea
+                name="message"
                 placeholder="Tell us about your project..."
                 style={styles.formTextarea}
                 rows={5}
