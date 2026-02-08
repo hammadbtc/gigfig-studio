@@ -501,7 +501,7 @@ export default function Home() {
               Our Works
               <ArrowRight size={18} style={{ marginLeft: '8px' }} />
             </button>
-            <button style={styles.secondaryButton} onClick={scrollToFooter}>Get in Touch</button>
+            <button style={styles.secondaryButton} onClick={scrollToContact}>Get in Touch</button>
           </motion.div>
         </div>
       </main>
