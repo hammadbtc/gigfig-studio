@@ -21,7 +21,7 @@ const projects = [
   {
     id: 4,
     name: 'MUZE',
-    description: 'Minimal essentials e-commerce with floating 3D product displays and warm, editorial aesthetic.',
+    description: 'Minimal essentials e-commerce with floating 3D product displays.',
     image: '/images/project-4.png',
     category: 'E-commerce',
   },
@@ -420,7 +420,7 @@ export default function Home() {
           <div style={styles.navLinks}>
             <a href="#works" style={styles.navLink}>WORK</a>
             <a href="#about" style={styles.navLink}>ABOUT</a>
-            <a href="#contact" style={styles.navLink}>CONTACT</a>
+            <a href="#footer" style={styles.navLink}>CONTACT</a>
           </div>
           <button style={styles.navButton} onClick={scrollToContact}>Start Project</button>
         </div>
