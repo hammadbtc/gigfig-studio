@@ -155,6 +155,10 @@ export default function Home() {
         html {
           scroll-behavior: smooth;
         }
+        select option {
+          background-color: #1a1a1a;
+          color: white;
+        }
       `}</style>
 
       {/* Background Gradient */}
@@ -914,6 +918,10 @@ const styles = {
     fontFamily: 'inherit',
     outline: 'none',
     cursor: 'pointer',
+  },
+  formSelectOption: {
+    backgroundColor: '#1a1a1a',
+    color: 'white',
   },
   formTextarea: {
     width: '100%',
