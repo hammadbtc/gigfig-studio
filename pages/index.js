@@ -370,7 +370,7 @@ export default function Home() {
         animate={{ y: [0, -20, 0], rotate: [0, 5, 0] }}
         transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
       >
-        <div style={styles.glassShapeLeft} />
+        <div style={styles.glassShapeLeft} className="glass-shape-left" />
       </motion.div>
 
       <motion.div 
@@ -378,7 +378,7 @@ export default function Home() {
         animate={{ y: [0, -15, 0], rotate: [0, -5, 0] }}
         transition={{ duration: 7, repeat: Infinity, ease: "easeInOut", delay: 1 }}
       >
-        <div style={styles.glassShapeRight} />
+        <div style={styles.glassShapeRight} className="glass-shape-right" />
       </motion.div>
 
       {/* Navigation */}
@@ -705,10 +705,10 @@ export default function Home() {
       </section>
 
       {/* Ticker */}
-      <div style={styles.tickerContainer}>
+      <div style={styles.tickerContainer} className="ticker-container">
         <div className="ticker" style={styles.ticker}>
           {[...tickerItems, ...tickerItems, ...tickerItems, ...tickerItems].map((item, index) => (
-            <span key={index} style={styles.tickerItem}>
+            <span key={index} style={styles.tickerItem} className="ticker-item">
               <span style={styles.tickerDot}></span>
               {item}
             </span>
@@ -769,9 +769,9 @@ export default function Home() {
       </AnimatePresence>
 
       {/* Footer */}
-      <footer style={styles.footer}>
+      <footer style={styles.footer} className="footer">
         <div style={styles.footerContainer}>
-          <div style={styles.footerContent}>
+          <div style={styles.footerContent} className="footer-content">
             <div style={styles.footerContact}>
               <p style={styles.footerText}>Contact us at <a href="mailto:gigfigstudio@gmail.com" style={styles.footerLink}>gigfigstudio@gmail.com</a></p>
             </div>
@@ -780,6 +780,7 @@ export default function Home() {
               target="_blank" 
               rel="noopener noreferrer"
               style={styles.footerSocial}
+              className="footer-social"
             >
               <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style={{ marginRight: '8px' }}>
                 <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
