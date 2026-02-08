@@ -91,6 +91,14 @@ export default function Home() {
     document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
   };
 
+  const scrollToFooter = () => {
+    document.getElementById('footer').scrollIntoView({ behavior: 'smooth' });
+  };
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   const nextCravio = () => {
     setCravioIndex((prev) => (prev + 1) % cravioImages.length);
   };
@@ -406,7 +414,7 @@ export default function Home() {
         transition={{ duration: 0.6 }}
         style={styles.nav}
       >
-        <div style={styles.logo}>GigFig</div>
+        <div style={styles.logo} onClick={scrollToTop} className="logo">GigFig</div>
         
         <div style={styles.desktopNav} className="desktop-nav">
           <div style={styles.navLinks}>
@@ -493,7 +501,7 @@ export default function Home() {
               Our Works
               <ArrowRight size={18} style={{ marginLeft: '8px' }} />
             </button>
-            <button style={styles.secondaryButton} onClick={scrollToContact}>Get in Touch</button>
+            <button style={styles.secondaryButton} onClick={scrollToFooter}>Get in Touch</button>
           </motion.div>
         </div>
       </main>
@@ -834,7 +842,7 @@ export default function Home() {
       </AnimatePresence>
 
       {/* Footer */}
-      <footer style={styles.footer} className="footer">
+      <footer id="footer" style={styles.footer} className="footer">
         <div style={styles.footerContainer}>
           <div style={styles.footerContent} className="footer-content">
             <div style={styles.footerContact}>
@@ -979,6 +987,7 @@ const styles = {
     fontSize: '24px',
     fontWeight: 'bold',
     letterSpacing: '-0.025em',
+    cursor: 'pointer',
   },
   navLinks: {
     display: 'flex',
