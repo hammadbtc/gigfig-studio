@@ -184,6 +184,10 @@ export default function Home() {
             left: 16px !important;
             right: 16px !important;
             padding: 20px !important;
+            z-index: 999 !important;
+          }
+          .mobile-menu-btn {
+            z-index: 1001 !important;
           }
 
           /* Hero section adjustments */
@@ -192,7 +196,7 @@ export default function Home() {
             min-height: auto !important;
           }
           .hero-headline {
-            font-size: clamp(28px, 8vw, 48px) !important;
+            font-size: clamp(24px, 7vw, 40px) !important;
             margin-bottom: 20px !important;
             line-height: 1.15 !important;
           }
