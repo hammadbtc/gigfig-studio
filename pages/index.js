@@ -758,7 +758,6 @@ export default function Home() {
                 style={styles.formTextarea}
                 className="form-textarea"
                 rows={5}
-                required
               ></textarea>
             </div>
 
