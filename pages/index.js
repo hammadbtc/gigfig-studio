@@ -463,10 +463,8 @@ export default function Home() {
             style={styles.paragraph}
             className="hero-paragraph"
           >
-            Welcome to GigFig Studio. We Build custom interfaces and experiences for 
-            websites, apps, and beyond—powered by Figma. With years of industry experience, 
-            we turn concepts into polished, user-loving interfaces every time. Check out 
-            our work below to see the magic in action, and let&apos;s connect to elevate yours.
+            We build custom interfaces and experiences for websites and apps. 
+            Check out our work below.
           </motion.p>
 
           <motion.div 
