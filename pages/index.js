@@ -81,6 +81,7 @@ export default function Home() {
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [lightboxImage, setLightboxImage] = useState('');
   const [isCravioLightbox, setIsCravioLightbox] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const scrollToWorks = () => {
     document.getElementById('works').scrollIntoView({ behavior: 'smooth' });
@@ -159,6 +160,205 @@ export default function Home() {
           background-color: #1a1a1a;
           color: white;
         }
+
+        /* Mobile Menu Visibility */
+        @media (max-width: 768px) {
+          .desktop-nav {
+            display: none !important;
+          }
+          .mobile-menu-btn {
+            display: flex !important;
+          }
+        }
+        @media (min-width: 769px) {
+          .mobile-menu-btn {
+            display: none !important;
+          }
+        }
+
+        /* Mobile Responsive Styles */
+        @media (max-width: 768px) {
+          /* Navigation adjustments */
+          .mobile-menu {
+            top: 72px !important;
+            left: 16px !important;
+            right: 16px !important;
+            padding: 20px !important;
+          }
+
+          /* Hero section adjustments */
+          .hero-section {
+            padding: 100px 16px 80px !important;
+            min-height: auto !important;
+          }
+          .hero-headline {
+            font-size: clamp(28px, 8vw, 48px) !important;
+            margin-bottom: 20px !important;
+            line-height: 1.15 !important;
+          }
+          .hero-paragraph {
+            font-size: 16px !important;
+            line-height: 1.6 !important;
+            margin-bottom: 32px !important;
+          }
+          .hero-ctas {
+            flex-direction: column !important;
+            gap: 12px !important;
+            width: 100% !important;
+          }
+          .hero-ctas button {
+            width: 100% !important;
+            justify-content: center !important;
+          }
+
+          /* Works section adjustments */
+          .works-section {
+            padding: 80px 16px !important;
+          }
+          .works-title {
+            font-size: clamp(28px, 7vw, 40px) !important;
+            margin-bottom: 12px !important;
+          }
+          .works-subtitle {
+            font-size: 16px !important;
+            margin-bottom: 40px !important;
+          }
+          .projects-grid {
+            grid-template-columns: 1fr !important;
+            gap: 24px !important;
+          }
+          .project-card {
+            border-radius: 16px !important;
+          }
+          .project-info {
+            padding: 20px !important;
+          }
+          .project-name {
+            font-size: 20px !important;
+          }
+          .project-description {
+            font-size: 14px !important;
+          }
+
+          /* Contact section adjustments */
+          .contact-section {
+            padding: 80px 16px !important;
+          }
+          .contact-title {
+            font-size: clamp(28px, 7vw, 40px) !important;
+          }
+          .contact-subtitle {
+            font-size: 16px !important;
+          }
+          .contact-form {
+            padding: 24px !important;
+            border-radius: 16px !important;
+          }
+          .form-row {
+            grid-template-columns: 1fr !important;
+            gap: 0 !important;
+            margin-bottom: 0 !important;
+          }
+          .form-group {
+            margin-bottom: 20px !important;
+          }
+          .form-input, .form-select, .form-textarea {
+            padding: 12px 14px !important;
+            font-size: 16px !important;
+          }
+          .submit-button {
+            padding: 14px 24px !important;
+          }
+
+          /* Lightbox adjustments */
+          .lightbox {
+            padding: 16px !important;
+          }
+          .lightbox-close {
+            top: 16px !important;
+            right: 16px !important;
+            left: auto !important;
+            transform: none !important;
+            width: 40px !important;
+            height: 40px !important;
+          }
+          .lightbox-nav-button {
+            width: 44px !important;
+            height: 44px !important;
+          }
+          .lightbox-nav-button-left {
+            left: 8px !important;
+          }
+          .lightbox-nav-button-right {
+            right: 8px !important;
+          }
+          .lightbox-image {
+            max-width: 100% !important;
+            max-height: 70vh !important;
+          }
+
+          /* Ticker adjustments */
+          .ticker-container {
+            padding: 12px 0 !important;
+          }
+          .ticker-item {
+            font-size: 12px !important;
+            margin: 0 20px !important;
+          }
+
+          /* Footer adjustments */
+          .footer {
+            padding: 32px 16px !important;
+          }
+          .footer-content {
+            gap: 12px !important;
+          }
+          .footer-social {
+            padding: 8px 16px !important;
+            font-size: 13px !important;
+          }
+
+          /* Background shapes - smaller on mobile */
+          .glass-shape-left, .glass-shape-right {
+            width: 200px !important;
+            height: 200px !important;
+            opacity: 0.4 !important;
+          }
+        }
+
+        /* Extra small screens (320px) */
+        @media (max-width: 375px) {
+          .hero-headline {
+            font-size: 26px !important;
+          }
+          .hero-paragraph {
+            font-size: 15px !important;
+          }
+          .works-title, .contact-title {
+            font-size: 26px !important;
+          }
+          .project-name {
+            font-size: 18px !important;
+          }
+          .contact-form {
+            padding: 20px 16px !important;
+          }
+          .mobile-nav-link {
+            font-size: 16px !important;
+            padding: 10px 0 !important;
+          }
+        }
+
+        /* Touch device hover handling */
+        @media (hover: none) {
+          .project-overlay {
+            opacity: 1 !important;
+            background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 50%) !important;
+          }
+          .project-arrow {
+            display: none !important;
+          }
+        }
       `}</style>
 
       {/* Background Gradient */}
@@ -190,23 +390,63 @@ export default function Home() {
       >
         <div style={styles.logo}>GigFig</div>
         
-        <div style={styles.navLinks}>
-          <a href="#works" style={styles.navLink}>WORK</a>
-          <a href="#about" style={styles.navLink}>ABOUT</a>
-          <a href="#contact" style={styles.navLink}>CONTACT</a>
+        <div style={styles.desktopNav} className="desktop-nav">
+          <div style={styles.navLinks}>
+            <a href="#works" style={styles.navLink}>WORK</a>
+            <a href="#about" style={styles.navLink}>ABOUT</a>
+            <a href="#contact" style={styles.navLink}>CONTACT</a>
+          </div>
+          <button style={styles.navButton} onClick={scrollToContact}>Start Project</button>
         </div>
 
-        <button style={styles.navButton} onClick={scrollToContact}>Start Project</button>
+        <button 
+          style={styles.mobileMenuButton}
+          className="mobile-menu-btn"
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+        >
+          {mobileMenuOpen ? <X size={24} color="white" /> : (
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <line x1="3" y1="6" x2="21" y2="6"/>
+              <line x1="3" y1="12" x2="21" y2="12"/>
+              <line x1="3" y1="18" x2="21" y2="18"/>
+            </svg>
+          )}
+        </button>
       </motion.nav>
 
+      {/* Mobile Menu */}
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.2 }}
+            style={styles.mobileMenu}
+            className="mobile-menu"
+          >
+            <a href="#works" style={styles.mobileNavLink} className="mobile-nav-link" onClick={() => setMobileMenuOpen(false)}>WORK</a>
+            <a href="#about" style={styles.mobileNavLink} className="mobile-nav-link" onClick={() => setMobileMenuOpen(false)}>ABOUT</a>
+            <a href="#contact" style={styles.mobileNavLink} className="mobile-nav-link" onClick={() => setMobileMenuOpen(false)}>CONTACT</a>
+            <button 
+              style={styles.mobileNavButton} 
+              onClick={() => { setMobileMenuOpen(false); scrollToContact(); }}
+            >
+              Start Project
+            </button>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       {/* Hero Content */}
-      <main style={styles.main}>
+      <main style={styles.main} className="hero-section">
         <div style={styles.heroContent}>
           <motion.h1 
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
             style={styles.headline}
+            className="hero-headline"
           >
             We build digital<br />
             experiences that work.
@@ -217,6 +457,7 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
             style={styles.paragraph}
+            className="hero-paragraph"
           >
             Welcome to GigFig Studio. We Build custom interfaces and experiences for 
             websites, apps, and beyond—powered by Figma. With years of industry experience, 
@@ -229,6 +470,7 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.6 }}
             style={styles.ctas}
+            className="hero-ctas"
           >
             <button style={styles.primaryButton} onClick={scrollToWorks}>
               Our Works
@@ -240,7 +482,7 @@ export default function Home() {
       </main>
 
       {/* Works Section */}
-      <section id="works" style={styles.worksSection}>
+      <section id="works" style={styles.worksSection} className="works-section">
         <div style={styles.worksContainer}>
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -248,11 +490,11 @@ export default function Home() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 style={styles.worksTitle}>Selected Works</h2>
-            <p style={styles.worksSubtitle}>A few projects we&apos;re proud of</p>
+            <h2 style={styles.worksTitle} className="works-title">Selected Works</h2>
+            <p style={styles.worksSubtitle} className="works-subtitle">A few projects we&apos;re proud of</p>
           </motion.div>
 
-          <div style={styles.projectsGrid}>
+          <div style={styles.projectsGrid} className="projects-grid">
             {/* First 2 projects: LaunchPad, VRX */}
             {projects.slice(0, 2).map((project, index) => (
               <motion.div
@@ -605,9 +847,55 @@ const styles = {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'space-between',
-    padding: '24px 64px',
+    padding: '24px',
     backgroundColor: 'rgba(10, 10, 10, 0.8)',
     backdropFilter: 'blur(10px)',
+  },
+  desktopNav: {
+    display: 'flex',
+    alignItems: 'center',
+    gap: '32px',
+  },
+  mobileMenuButton: {
+    display: 'none',
+    background: 'none',
+    border: 'none',
+    cursor: 'pointer',
+    color: 'white',
+  },
+  mobileMenu: {
+    position: 'fixed',
+    top: '80px',
+    left: '24px',
+    right: '24px',
+    backgroundColor: 'rgba(10, 10, 10, 0.95)',
+    backdropFilter: 'blur(20px)',
+    borderRadius: '16px',
+    border: '1px solid rgba(255, 255, 255, 0.1)',
+    padding: '24px',
+    zIndex: 99,
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '16px',
+  },
+  mobileNavLink: {
+    color: 'white',
+    textDecoration: 'none',
+    fontSize: '18px',
+    fontWeight: 500,
+    padding: '12px 0',
+    borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
+  },
+  mobileNavButton: {
+    backgroundColor: '#8B5CF6',
+    color: 'white',
+    padding: '14px 24px',
+    borderRadius: '12px',
+    fontSize: '16px',
+    fontWeight: 600,
+    border: 'none',
+    cursor: 'pointer',
+    marginTop: '8px',
   },
   logo: {
     fontSize: '24px',
