@@ -463,8 +463,8 @@ export default function Home() {
             style={styles.paragraph}
             className="hero-paragraph"
           >
-            We build custom interfaces and experiences for websites and apps. 
-            Check out our work below.
+            We craft custom interfaces and digital experiences for brands that want to stand out. 
+            From concept to launch, we turn ideas into polished products.
           </motion.p>
 
           <motion.div 
