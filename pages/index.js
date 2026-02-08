@@ -513,6 +513,31 @@ export default function Home() {
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* Footer */}
+      <footer style={styles.footer}>
+        <div style={styles.footerContainer}>
+          <div style={styles.footerContent}>
+            <div style={styles.footerContact}>
+              <p style={styles.footerText}>Contact us at <a href="mailto:gigfigstudio@gmail.com" style={styles.footerLink}>gigfigstudio@gmail.com</a></p>
+            </div>
+            <a 
+              href="https://x.com/gigfigstudio" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              style={styles.footerSocial}
+            >
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style={{ marginRight: '8px' }}>
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+              </svg>
+              @GigFigStudio
+              <ArrowUpRight size={16} style={{ marginLeft: '4px' }} />
+            </a>
+          </div>
+          
+          <p style={styles.footerCopyright}>© {new Date().getFullYear()} GigFig Studio. All rights reserved.</p>
+        </div>
+      </footer>
     </div>
   );
 }
@@ -950,6 +975,55 @@ const styles = {
     alignItems: 'center',
     justifyContent: 'center',
     transition: 'background-color 0.2s, transform 0.2s',
+  },
+  footer: {
+    position: 'relative',
+    zIndex: 10,
+    padding: '48px 24px',
+    borderTop: '1px solid rgba(255, 255, 255, 0.1)',
+    backgroundColor: 'rgba(10, 10, 10, 0.9)',
+  },
+  footerContainer: {
+    maxWidth: '1200px',
+    margin: '0 auto',
+    textAlign: 'center',
+  },
+  footerContent: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    gap: '16px',
+    marginBottom: '24px',
+  },
+  footerContact: {
+    display: 'flex',
+    alignItems: 'center',
+    gap: '8px',
+  },
+  footerText: {
+    color: '#9CA3AF',
+    fontSize: '14px',
+  },
+  footerLink: {
+    color: 'white',
+    textDecoration: 'none',
+    transition: 'color 0.2s',
+  },
+  footerSocial: {
+    display: 'flex',
+    alignItems: 'center',
+    color: 'white',
+    textDecoration: 'none',
+    fontSize: '14px',
+    fontWeight: 500,
+    padding: '10px 20px',
+    borderRadius: '9999px',
+    border: '1px solid rgba(255, 255, 255, 0.2)',
+    transition: 'background-color 0.2s, border-color 0.2s',
+  },
+  footerCopyright: {
+    color: '#6B7280',
+    fontSize: '12px',
   },
   lightbox: {
     position: 'fixed',
