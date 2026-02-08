@@ -477,8 +477,9 @@ export default function Home() {
             style={styles.paragraph}
             className="hero-paragraph"
           >
-            We craft custom interfaces and digital experiences for brands that want to stand out. 
-            From concept to launch, we turn ideas into polished products.
+            Welcome to GigFig Studio. We build custom interfaces and experiences for 
+            websites, apps, and beyond—powered by Figma. Check out our work below to see 
+            the magic in action, and let&apos;s connect to elevate yours.
           </motion.p>
 
           <motion.div 
