@@ -248,6 +248,20 @@ export default function Home() {
           .contact-section {
             padding: 80px 16px !important;
           }
+
+          /* About section adjustments */
+          .about-section {
+            padding: 80px 16px !important;
+          }
+          .about-title {
+            font-size: clamp(28px, 7vw, 40px) !important;
+          }
+          .about-subtitle {
+            font-size: 16px !important;
+          }
+          .about-stats {
+            gap: 32px !important;
+          }
           .contact-title {
             font-size: clamp(28px, 7vw, 40px) !important;
           }
@@ -623,6 +637,55 @@ export default function Home() {
               </motion.div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* About Section */}
+      <section id="about" style={styles.aboutSection} className="about-section">
+        <div style={styles.aboutContainer}>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            style={styles.aboutHeader}
+          >
+            <h2 style={styles.aboutTitle} className="about-title">About Us</h2>
+            <p style={styles.aboutSubtitle} className="about-subtitle">We are a design studio focused on creating digital experiences that matter.</p>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            style={styles.aboutContent}
+          >
+            <p style={styles.aboutText}>
+              GigFig Studio was founded with a simple mission: help brands cut through the noise 
+              with design that actually works. We believe great design isnt just about looking 
+              good—its about solving problems and driving results.
+            </p>
+            <p style={styles.aboutText}>
+              Our team brings together years of experience across UI/UX, brand identity, and 
+              web development. We have worked with startups and established brands alike, 
+              always bringing the same level of craft and attention to detail.
+            </p>
+            <div style={styles.aboutStats}>
+              <div style={styles.statItem}>
+                <span style={styles.statNumber}>50+</span>
+                <span style={styles.statLabel}>Projects Delivered</span>
+              </div>
+              <div style={styles.statItem}>
+                <span style={styles.statNumber}>4+</span>
+                <span style={styles.statLabel}>Years Experience</span>
+              </div>
+              <div style={styles.statItem}>
+                <span style={styles.statNumber}>100%</span>
+                <span style={styles.statLabel}>Client Satisfaction</span>
+              </div>
+            </div>
+          </motion.div>
         </div>
       </section>
 
@@ -1177,6 +1240,61 @@ const styles = {
     height: '6px',
     borderRadius: '50%',
     backgroundColor: '#8B5CF6',
+  },
+  aboutSection: {
+    position: 'relative',
+    zIndex: 10,
+    padding: '120px 24px',
+    backgroundColor: '#0A0A0A',
+  },
+  aboutContainer: {
+    maxWidth: '800px',
+    margin: '0 auto',
+  },
+  aboutHeader: {
+    textAlign: 'center',
+    marginBottom: '48px',
+  },
+  aboutTitle: {
+    fontSize: 'clamp(32px, 5vw, 48px)',
+    fontWeight: 'bold',
+    marginBottom: '16px',
+  },
+  aboutSubtitle: {
+    color: '#9CA3AF',
+    fontSize: '18px',
+  },
+  aboutContent: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '24px',
+  },
+  aboutText: {
+    color: '#D1D5DB',
+    fontSize: '16px',
+    lineHeight: 1.7,
+  },
+  aboutStats: {
+    display: 'flex',
+    justifyContent: 'center',
+    gap: '48px',
+    marginTop: '32px',
+    flexWrap: 'wrap',
+  },
+  statItem: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    gap: '8px',
+  },
+  statNumber: {
+    fontSize: '36px',
+    fontWeight: 'bold',
+    color: '#8B5CF6',
+  },
+  statLabel: {
+    fontSize: '14px',
+    color: '#9CA3AF',
   },
   contactSection: {
     position: 'relative',
