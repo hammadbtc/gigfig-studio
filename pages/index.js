@@ -507,6 +507,7 @@ export default function Home() {
                   ...styles.projectCard,
                   ...(hoveredProject === project.id ? styles.projectCardHover : {}),
                 }}
+                className="project-card"
                 onMouseEnter={() => setHoveredProject(project.id)}
                 onMouseLeave={() => setHoveredProject(null)}
               >
@@ -522,16 +523,16 @@ export default function Home() {
                       ...(hoveredProject === project.id ? styles.projectImageHover : {}),
                     }}
                   />
-                  <div style={styles.projectOverlay}>
-                    <div style={styles.projectArrow}>
+                  <div style={styles.projectOverlay} className="project-overlay">
+                    <div style={styles.projectArrow} className="project-arrow">
                       <ArrowUpRight size={24} color="white" />
                     </div>
                   </div>
                 </div>
-                <div style={styles.projectInfo}>
+                <div style={styles.projectInfo} className="project-info">
                   <span style={styles.projectCategory}>{project.category}</span>
-                  <h3 style={styles.projectName}>{project.name}</h3>
-                  <p style={styles.projectDescription}>{project.description}</p>
+                  <h3 style={styles.projectName} className="project-name">{project.name}</h3>
+                  <p style={styles.projectDescription} className="project-description">{project.description}</p>
                 </div>
               </motion.div>
             ))}
@@ -543,6 +544,7 @@ export default function Home() {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.2 }}
               style={styles.projectCard}
+              className="project-card"
             >
               <div style={styles.carouselContainer}>
                 <img
@@ -570,10 +572,10 @@ export default function Home() {
                   ))}
                 </div>
               </div>
-              <div style={styles.projectInfo}>
+              <div style={styles.projectInfo} className="project-info">
                 <span style={styles.projectCategory}>Mobile App</span>
-                <h3 style={styles.projectName}>Cravio</h3>
-                <p style={styles.projectDescription}>Food delivery app with 60+ screens, warm UI and seamless ordering experience.</p>
+                <h3 style={styles.projectName} className="project-name">Cravio</h3>
+                <p style={styles.projectDescription} className="project-description">Food delivery app with 60+ screens, warm UI and seamless ordering experience.</p>
               </div>
             </motion.div>
 
@@ -589,6 +591,7 @@ export default function Home() {
                   ...styles.projectCard,
                   ...(hoveredProject === project.id ? styles.projectCardHover : {}),
                 }}
+                className="project-card"
                 onMouseEnter={() => setHoveredProject(project.id)}
                 onMouseLeave={() => setHoveredProject(null)}
               >
@@ -604,16 +607,16 @@ export default function Home() {
                       ...(hoveredProject === project.id ? styles.projectImageHover : {}),
                     }}
                   />
-                  <div style={styles.projectOverlay}>
-                    <div style={styles.projectArrow}>
+                  <div style={styles.projectOverlay} className="project-overlay">
+                    <div style={styles.projectArrow} className="project-arrow">
                       <ArrowUpRight size={24} color="white" />
                     </div>
                   </div>
                 </div>
-                <div style={styles.projectInfo}>
+                <div style={styles.projectInfo} className="project-info">
                   <span style={styles.projectCategory}>{project.category}</span>
-                  <h3 style={styles.projectName}>{project.name}</h3>
-                  <p style={styles.projectDescription}>{project.description}</p>
+                  <h3 style={styles.projectName} className="project-name">{project.name}</h3>
+                  <p style={styles.projectDescription} className="project-description">{project.description}</p>
                 </div>
               </motion.div>
             ))}
@@ -622,7 +625,7 @@ export default function Home() {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" style={styles.contactSection}>
+      <section id="contact" style={styles.contactSection} className="contact-section">
         <div style={styles.contactContainer}>
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -631,8 +634,8 @@ export default function Home() {
             transition={{ duration: 0.6 }}
             style={styles.contactHeader}
           >
-            <h2 style={styles.contactTitle}>Let&apos;s Work Together</h2>
-            <p style={styles.contactSubtitle}>Have a project in mind? Send us a message and let&apos;s create something amazing.</p>
+            <h2 style={styles.contactTitle} className="contact-title">Let&apos;s Work Together</h2>
+            <p style={styles.contactSubtitle} className="contact-subtitle">Have a project in mind? Send us a message and let&apos;s create something amazing.</p>
           </motion.div>
 
           <motion.form
@@ -641,35 +644,38 @@ export default function Home() {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
             style={styles.contactForm}
+            className="contact-form"
             action="https://formspree.io/f/mbdajqog"
             method="POST"
           >
-            <div style={styles.formRow}>
-              <div style={styles.formGroup}>
+            <div style={styles.formRow} className="form-row">
+              <div style={styles.formGroup} className="form-group">
                 <label style={styles.formLabel}>Name</label>
                 <input
                   type="text"
                   name="name"
                   placeholder="Your name"
                   style={styles.formInput}
+                  className="form-input"
                   required
                 />
               </div>
-              <div style={styles.formGroup}>
+              <div style={styles.formGroup} className="form-group">
                 <label style={styles.formLabel}>Email</label>
                 <input
                   type="email"
                   name="email"
                   placeholder="your@email.com"
                   style={styles.formInput}
+                  className="form-input"
                   required
                 />
               </div>
             </div>
 
-            <div style={styles.formGroup}>
+            <div style={styles.formGroup} className="form-group">
               <label style={styles.formLabel}>Project Type</label>
-              <select name="project_type" style={styles.formSelect}>
+              <select name="project_type" style={styles.formSelect} className="form-select">
                 <option value="">Select a project type</option>
                 <option value="website">Website Design</option>
                 <option value="app">Mobile App</option>
@@ -678,18 +684,19 @@ export default function Home() {
               </select>
             </div>
 
-            <div style={styles.formGroup}>
+            <div style={styles.formGroup} className="form-group">
               <label style={styles.formLabel}>Message</label>
               <textarea
                 name="message"
                 placeholder="Tell us about your project..."
                 style={styles.formTextarea}
+                className="form-textarea"
                 rows={5}
                 required
               ></textarea>
             </div>
 
-            <button type="submit" style={styles.submitButton}>
+            <button type="submit" style={styles.submitButton} className="submit-button">
               Send Message
               <ArrowRight size={18} style={{ marginLeft: '8px' }} />
             </button>
@@ -718,10 +725,12 @@ export default function Home() {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
             style={styles.lightbox}
+            className="lightbox"
             onClick={closeLightbox}
           >
             <button
               style={styles.lightboxClose}
+              className="lightbox-close"
               onClick={closeLightbox}
             >
               <X size={32} color="white" />
@@ -730,12 +739,14 @@ export default function Home() {
               <>
                 <button
                   style={{...styles.lightboxNavButton, ...styles.lightboxNavButtonLeft}}
+                  className="lightbox-nav-button lightbox-nav-button-left"
                   onClick={(e) => { e.stopPropagation(); prevCravioLightbox(); }}
                 >
                   <ChevronLeft size={32} color="white" />
                 </button>
                 <button
                   style={{...styles.lightboxNavButton, ...styles.lightboxNavButtonRight}}
+                  className="lightbox-nav-button lightbox-nav-button-right"
                   onClick={(e) => { e.stopPropagation(); nextCravioLightbox(); }}
                 >
                   <ChevronRight size={32} color="white" />
@@ -750,6 +761,7 @@ export default function Home() {
               src={lightboxImage}
               alt="Full size"
               style={styles.lightboxImage}
+              className="lightbox-image"
               onClick={(e) => e.stopPropagation()}
             />
           </motion.div>
