@@ -20,8 +20,8 @@ const projects = [
   },
   {
     id: 4,
-    name: 'Drift',
-    description: 'Streetwear brand storefront with limited drops and bold visuals.',
+    name: 'MUZE',
+    description: 'Minimal essentials e-commerce with floating 3D product displays and warm, editorial aesthetic.',
     image: '/images/project-4.png',
     category: 'E-commerce',
   },
