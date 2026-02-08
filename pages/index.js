@@ -72,7 +72,7 @@ export default function Home() {
   const tickerItems = [
     'Figma Experts',
     'UI/UX Design',
-    'Web Apps',
+    'Web App Designs',
     'Brand Identity',
   ];
 
